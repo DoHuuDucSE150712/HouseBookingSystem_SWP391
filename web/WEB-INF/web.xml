@@ -96,14 +96,6 @@
         <servlet-name>getHouseImgServlet</servlet-name>
         <servlet-class>Controller.getHouseImgServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>NextAddBillServlet</servlet-name>
-        <servlet-class>Controller.NextAddBillServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SearchBillServlet</servlet-name>
-        <servlet-class>Controller.SearchBillServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>ListAccountServlet</servlet-name>
         <url-pattern>/ListAccountServlet</url-pattern>
@@ -200,17 +192,12 @@
         <servlet-name>getHouseImgServlet</servlet-name>
         <url-pattern>/getHouseImgServlet</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>NextAddBillServlet</servlet-name>
-        <url-pattern>/NextAddBillServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SearchBillServlet</servlet-name>
-        <url-pattern>/SearchBillServlet</url-pattern>
-    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>Index.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>

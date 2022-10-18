@@ -34,10 +34,10 @@ public class DeleteBillServlet extends HttpServlet {
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             int id = Integer.parseInt(request.getParameter("id"));
-        BillDetailDAO bdao = new BillDetailDAO();
-        bdao.deleteBillDetail(id);
         BillDAO dao = new BillDAO();
         dao.deleteBill(id);
+        BillDetailDAO bdao = new BillDetailDAO();
+        bdao.deleteBillDetail(id);
         response.sendRedirect("ListBillServlet");
         }
     }

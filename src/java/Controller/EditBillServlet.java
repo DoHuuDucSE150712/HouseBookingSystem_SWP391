@@ -77,7 +77,6 @@ public class EditBillServlet extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         int id = Integer.parseInt(request.getParameter("id"));
-        int bid = Integer.parseInt(request.getParameter("bid"));
         String dateString =request.getParameter("date");
         SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
@@ -110,10 +109,10 @@ public class EditBillServlet extends HttpServlet {
             return;
         }
         String note = request.getParameter("note");
-        BillDetail bd = new BillDetail(houseid, bid, houseid, date, date, note);
+        BillDetail bd = new BillDetail(id, houseid, date1, date2, note);
         BillDetailDAO ddao = new BillDetailDAO();
         ddao.editBillDetail(bd);
-        Bill b = new Bill(id, date, total, status, userid);
+        Bill b = new Bill(userid, date, total, status, userid);
         BillDAO dao = new BillDAO();
         dao.editBill(b);
         response.sendRedirect("ListBillServlet");

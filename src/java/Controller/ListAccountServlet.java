@@ -36,7 +36,7 @@ public class ListAccountServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             AccountDAO dao = new AccountDAO();
-            List<Account> list = dao.getAccount();
+            List<Account> list = dao.getAllAccount();
             request.setAttribute("AccountList", list);
             request.getRequestDispatcher("ListAccount.jsp").forward(request, response);
         }

@@ -221,36 +221,4 @@ public class HouseDAO {
         return list;
     }
     
-    public House getHouses(){
-        String sql = "select * from dbo.House";
-        House house = new House();
-        try {
-            //tạo khay chứa câu lệnh
-            PreparedStatement pre = con.prepareStatement(sql);
-            //chạy câu lệnh và tạo khay chứa kết quả câu lệnh
-            ResultSet resultSet = pre.executeQuery();
-            while(resultSet.next()){
-                int houseid = resultSet.getInt(1);
-                Date postdate = resultSet.getDate(2);
-                String housename = resultSet.getString(3);
-                String review = resultSet.getString(4);
-                float price = resultSet.getFloat(5);
-                int status = resultSet.getInt(6);
-                String address = resultSet.getString(7);
-                String description = resultSet.getString(8);
-                int locationid = resultSet.getInt(9);
-                int menuid = resultSet.getInt(10);
-
-                //tạo model hứng giữ liệu
-                Menu menu = new Menu(menuid, null);
-                Location location = new Location(locationid, null);
-               house = new House(houseid, postdate, housename, review, price, status, address, description, location, menu);
-            }
-        } catch (Exception e) {
-            System.out.println("error: "+e);
-        }
-        
-        return house;
-    }
-    
 }

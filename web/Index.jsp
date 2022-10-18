@@ -37,10 +37,12 @@
             <a href="#review">review</a>
             <a href="#contact">contact</a>
         </nav>
-
+        ${username}
         <div class="icons">
             <i class="fas fa-search" id="search-btn"></i>
-            <i class="fas fa-user" id="login-btn"></i>
+            <a href="login.jsp">
+                <i class="fas fa-user" id=""></i>
+            </a>
         </div>
 
         <form action="" class="search-bar-container">
@@ -51,24 +53,6 @@
     </header>
 
     <!-- header section ends -->
-    <!-- login form container  -->
-
-    <div class="login-form-container">
-
-        <i class="fas fa-times" id="form-close"></i>
-
-        <form action="LoginServlet" method="post">
-            <h3>login</h3>
-            <input type="text" name="username" class="box" placeholder="enter your email">
-            <input type="password" name="password" class="box" placeholder="enter your password">
-            <input type="submit" value="login now" class="btn">
-            <input type="checkbox" id="remember">
-            <label for="remember">remember me</label>
-            <p>forget password? <a href="#">click here</a></p>
-            <p>don't have and account? <a href="Register.jsp">register now</a></p>
-        </form>
-
-    </div>
 
     <!-- home section starts  -->
 

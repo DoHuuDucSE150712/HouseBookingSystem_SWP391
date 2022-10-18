@@ -6,11 +6,9 @@
 package Controller;
 
 import Dao.HouseDAO;
-import Dao.HouseImgDAO;
 import Dao.LocationDAO;
 import Dao.MenuDAO;
 import Model.House;
-import Model.HouseImg;
 import Model.Location;
 import Model.Menu;
 import jakarta.servlet.ServletException;
@@ -73,9 +71,6 @@ public class NextEditHouseServlet extends HttpServlet {
         List<Menu> mlist = mdao.getMenu();
         HouseDAO dao = new HouseDAO();
         House h = dao.getHousebyId(id);
-        HouseImgDAO hdao = new HouseImgDAO();
-        HouseImg hi = hdao.getHouseImgbyID(id);
-        request.setAttribute("houseimg", hi);
         request.setAttribute("llist", llist);
         request.setAttribute("mlist", mlist);
         request.setAttribute("house", h);

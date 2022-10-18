@@ -10,6 +10,7 @@
 <%@page import="Model.Location"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -43,41 +44,21 @@
                 h = (House) request.getAttribute("house");
             }
         %>
-        <header class="header">
-
-            <div class="flex">
-   
-          <a href="AdminIndex.jsp" class="logo">Admin<span>Panel</span></a>
-   
-         <nav class="navbar">
-            <a href="AdminIndex.jsp"><span>Home</span></a>
-            <a href="ListHouseServlet">Room</a>
-            <a href="ListBillServlet">Orders</a>
-            <a href="ListAccountServlet">Users</a>
-            <a href="admin_contacts.html">Messages</a>
-         </nav>
-   
-         <div class="icons">
-            <div id="menu-btn" class="fas fa-bars"></div>
-            <div id="user-btn" class="fas fa-user"></div>
-         </div>
-   
-         <div class="account-box">
-          <p>username : <span></span></p>
-          <a href="LogoutServlet" class="delete-btn">logout</a>
-          <div>
-            <a href="Login.jsp">login</a> |
-            <a href="Register.jsp">register</a>
-          </div>
-   
-      </div>
-          </div>
-   </header>
+        <header>
+            <c:import url="Header_LoginedAdmin.jsp"></c:import>
+        </header>
         
         <section class="add-products">
       <h1 class="title">Add House</h1>
 
       <form action="AddHouseServlet" method="post" >
+        <input
+          type="text"
+          name="houseid"
+          class="box"
+          placeholder="Enter Account ID"
+          hidden="true"
+        />
         <h2>Post Date</h2>
         <input
           type="date"
@@ -93,12 +74,12 @@
           placeholder="Enter House Name"
           required=""
         />
-        <h2>Review</h2>
         <input
           type="text"
           name="review"
           class="box"
           placeholder="Enter Review"
+          hidden="true"
         />
         <h2>House Price</h2>
         <input
@@ -129,7 +110,7 @@
           type="text"
           name="description"
           class="box"
-          placeholder="Enter Description"
+          placeholder="Enter role"
         />
         <h2>Location</h2>
         <select class="box"  name="location">
@@ -151,21 +132,8 @@
                 }
                 %>
         </select>
-        <h2>IMG_Link</h2>
-        <input
-          type="text"
-          name="imglink"
-          class="box"
-          placeholder="Enter IMG_Link"
-        />
-        <h2>House_ID</h2>
-        <input
-          type="number"
-          name="houseid"
-          value="<%=h.getHouseid() + 1%>"
-          class="box"
-          placeholder="Enter Account ID"
-        />
+            
+        
         
         <input class="Update-btn" type="submit" value="   Add   " name="Add House" />
       </form>

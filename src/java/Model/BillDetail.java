@@ -11,7 +11,6 @@ import java.util.Date;
  * @author Admin
  */
 public class BillDetail {
-    private int billdetailid;
     private int billid;
     private int houseid;
     private Date startdate;
@@ -21,21 +20,12 @@ public class BillDetail {
     public BillDetail() {
     }
 
-    public BillDetail(int billdetailid, int billid, int houseid, Date startdate, Date enddate, String note) {
-        this.billdetailid = billdetailid;
+    public BillDetail(int billid, int houseid, Date startdate, Date enddate, String note) {
         this.billid = billid;
         this.houseid = houseid;
         this.startdate = startdate;
         this.enddate = enddate;
         this.note = note;
-    }
-
-    public int getBilldetailid() {
-        return billdetailid;
-    }
-
-    public void setBilldetailid(int billdetailid) {
-        this.billdetailid = billdetailid;
     }
 
     public int getBillid() {
@@ -77,7 +67,7 @@ public class BillDetail {
     public void setNote(String note) {
         this.note = note;
     }
-
+    
     
     
 }

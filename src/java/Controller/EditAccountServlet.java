@@ -79,11 +79,12 @@ public class EditAccountServlet extends HttpServlet {
         String userimg = request.getParameter("userimg");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        int phone = Integer.parseInt(request.getParameter("phone"));
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
         int status = Integer.parseInt(request.getParameter("status"));
         int roleid = Integer.parseInt(request.getParameter("role"));
         Role role = new Role(roleid, null);
-        Account a = new Account(roleid, fullname, userimg, username, password, phone, status, role);
+        Account a = new Account(roleid, fullname, userimg, username, password, email, phone, status, role);
         AccountDAO dao = new AccountDAO();
         dao.editAccount(a);
         response.sendRedirect("ListAccountServlet");

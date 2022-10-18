@@ -88,10 +88,6 @@ public class AddBillServlet extends HttpServlet {
         float total = Float.parseFloat(request.getParameter("total"));
         int status = 1;
         int userid = Integer.parseInt(request.getParameter("userid"));
-        Bill b = new Bill(-1, date, total, status, userid);
-        BillDAO dao = new BillDAO();
-        dao.addBill(b);
-        int billid = Integer.parseInt(request.getParameter("billid"));
         int houseid = Integer.parseInt(request.getParameter("houseid"));
         String dateString1 =request.getParameter("startdate");
         SimpleDateFormat formatDate1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -112,9 +108,12 @@ public class AddBillServlet extends HttpServlet {
             return;
         }
         String note = request.getParameter("note");
-        BillDetail bd = new BillDetail(-1, billid, houseid, date1, date2, note);
+        BillDetail bd = new BillDetail(userid, houseid, date1, date2, note);
         BillDetailDAO ddao = new BillDetailDAO();
         ddao.addBillDetail(bd);
+        Bill b = new Bill(-1, date, total, status, userid);
+        BillDAO dao = new BillDAO();
+        dao.addBill(b);
         response.sendRedirect("ListBillServlet");
     }
 

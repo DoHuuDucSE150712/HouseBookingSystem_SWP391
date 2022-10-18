@@ -39,15 +39,14 @@ public class BillDetailDAO {
             //chạy câu lệnh và tạo khay chứa kết quả câu lệnh
             ResultSet resultSet = pre.executeQuery();
             while(resultSet.next()){
-                int billdetailid = resultSet.getInt(1);
-                int billid = resultSet.getInt(2);
-                int houseid = resultSet.getInt(3);
-                Date startdate = resultSet.getDate(4);
-                Date enđate = resultSet.getDate(5);
-                String note = resultSet.getString(6);
+                int billid = resultSet.getInt(1);
+                int houseid = resultSet.getInt(2);
+                Date startdate = resultSet.getDate(3);
+                Date enđate = resultSet.getDate(4);
+                String note = resultSet.getString(5);
 
                 //tạo model hứng giữ liệu
-                BillDetail b = new BillDetail(billdetailid, billid, houseid, startdate, enđate, note);
+                BillDetail b = new BillDetail(billid, houseid, startdate, enđate, note);
                 list.add(b);
             }
         } catch (Exception e) {
@@ -58,7 +57,7 @@ public class BillDetailDAO {
     }
     
     public BillDetail getBillDeatailbyID(int id){
-        String sql = "select * from Bill_detail where billdetail_id = ?";
+        String sql = "select * from Bill_detail where bill_id = ?";
         BillDetail b = new BillDetail();
         
         try {
@@ -68,15 +67,14 @@ public class BillDetailDAO {
             //chạy câu lệnh và tạo khay chứa kết quả câu lệnh
             ResultSet resultSet = pre.executeQuery();
             while(resultSet.next()){
-                int billdetailid = resultSet.getInt(1);
-                int billid = resultSet.getInt(2);
-                int houseid = resultSet.getInt(3);
-                Date startdate = resultSet.getDate(4);
-                Date enđate = resultSet.getDate(5);
-                String note = resultSet.getString(6);
+                int billid = resultSet.getInt(1);
+                int houseid = resultSet.getInt(2);
+                Date startdate = resultSet.getDate(3);
+                Date enđate = resultSet.getDate(4);
+                String note = resultSet.getString(5);
 
                 //tạo model hứng giữ liệu
-                b = new BillDetail(billdetailid, billid, houseid, startdate, enđate, note);
+                b = new BillDetail(billid, houseid, startdate, enđate, note);
             }
         } catch (Exception e) {
             System.out.println("error: "+e);
@@ -87,24 +85,22 @@ public class BillDetailDAO {
     
     public void editBillDetail(BillDetail billdetail){
         String sql = "UPDATE [dbo].[Bill_detail]\n" +
-                    "   SET [bill_id] = ?\n" +
-                    "      ,[house_id] = ?\n" +
-                    "      ,[start_date] = ?\n" +
-                    "      ,[end_date] = ?\n" +
-                    "      ,[note] = ?\n" +
-                    " WHERE billdetail_id = ?";
+                        "   SET [house_id] = ?\n" +
+                        "      ,[start_date] = ?\n" +
+                        "      ,[end_date] = ?\n" +
+                        "      ,[note] = ?\n" +
+                        " WHERE [bill_id] = ?";
         try {
             //tạo khay chứa câu lệnh
             PreparedStatement pre = con.prepareStatement(sql);
             //set gia tri cho dau ? 
-            pre.setInt(1, billdetail.getBillid());
-            pre.setInt(2, billdetail.getHouseid());
+            pre.setInt(1, billdetail.getHouseid());
             java.sql.Date DateSql = new java.sql.Date(billdetail.getStartdate().getTime());
-            pre.setDate(3, DateSql);
+            pre.setDate(2, DateSql);
             java.sql.Date DateSq2 = new java.sql.Date(billdetail.getEnddate().getTime());
-            pre.setDate(4, DateSq2);
-            pre.setString(5, billdetail.getNote());
-            pre.setInt(6, billdetail.getBillid());
+            pre.setDate(3, DateSq2);
+            pre.setString(4, billdetail.getNote());
+            pre.setInt(5, billdetail.getBillid());
             //chạy câu lệnh và tạo khay chứa kết quả câu lệnh
             pre.executeUpdate();
 
@@ -115,7 +111,7 @@ public class BillDetailDAO {
     
     public void deleteBillDetail(int id){
         String sql = "DELETE FROM [dbo].[Bill_detail]\n" +
-                "      WHERE bill_id = ?";
+                    "      WHERE bill_id = ?";
         try {
             PreparedStatement pre = con.prepareStatement(sql);
             pre.setInt(1, id);
@@ -143,13 +139,13 @@ public class BillDetailDAO {
             //tạo khay chứa câu lệnh
             PreparedStatement pre = con.prepareStatement(sql);
             //set gia tri cho dau ? 
-            pre.setInt(1, billdetail.getBillid());
-            pre.setInt(2, billdetail.getHouseid());
+            pre.setInt(1, billdetail.getHouseid());
             java.sql.Date DateSql = new java.sql.Date(billdetail.getStartdate().getTime());
-            pre.setDate(3, DateSql);
+            pre.setDate(2, DateSql);
             java.sql.Date DateSq2 = new java.sql.Date(billdetail.getEnddate().getTime());
-            pre.setDate(4, DateSq2);
-            pre.setString(5, billdetail.getNote());
+            pre.setDate(3, DateSq2);
+            pre.setString(4, billdetail.getNote());
+            pre.setInt(5, billdetail.getBillid());
             //chạy câu lệnh và tạo khay chứa kết quả câu lệnh
             pre.executeUpdate();
 
