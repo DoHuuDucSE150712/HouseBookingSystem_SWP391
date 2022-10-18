@@ -6,19 +6,17 @@
 package Controller;
 
 import Dao.HouseDAO;
-import Dao.HouseImgDAO;
 import Model.House;
-import Model.HouseImg;
 import Model.Location;
 import Model.Menu;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -102,11 +100,6 @@ public class EditHouseServlet extends HttpServlet {
         House h = new House(houseid, date, housename, review, price, status, address, description, location, menu);
         HouseDAO dao = new HouseDAO();
         dao.editHouse(h);
-        int imgid = Integer.parseInt(request.getParameter("imgid"));
-        String imglink = request.getParameter("imglink");
-        HouseImg hi = new HouseImg(imgid, imglink, houseid);
-        HouseImgDAO hdao = new HouseImgDAO();
-        hdao.editHouseImg(hi);
         response.sendRedirect("ListHouseServlet");
     }
 

@@ -6,12 +6,12 @@ package Controller;
 
 import Dao.BillDAO;
 import Dao.BillDetailDAO;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -34,10 +34,10 @@ public class DeleteBillServlet extends HttpServlet {
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             int id = Integer.parseInt(request.getParameter("id"));
-        BillDetailDAO bdao = new BillDetailDAO();
-        bdao.deleteBillDetail(id);
         BillDAO dao = new BillDAO();
         dao.deleteBill(id);
+        BillDetailDAO bdao = new BillDetailDAO();
+        bdao.deleteBillDetail(id);
         response.sendRedirect("ListBillServlet");
         }
     }

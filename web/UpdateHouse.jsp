@@ -9,8 +9,8 @@
 <%@page import="Model.Location"%>
 <%@page import="java.util.List"%>
 <%@page import="Model.House"%>
-<%@page import="Model.HouseImg"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -43,40 +43,10 @@
             if (request.getAttribute("house") != null) {
                 h = (House) request.getAttribute("house");
             }
-            HouseImg hi = new HouseImg();
-            if (request.getAttribute("houseimg") != null) {
-                hi = (HouseImg) request.getAttribute("houseimg");
-            }
         %>
-        <header class="header">
-
-      <div class="flex">
-   
-          <a href="AdminIndex.jsp" class="logo">Admin<span>Panel</span></a>
-   
-         <nav class="navbar">
-            <a href="AdminIndex.jsp"><span>Home</span></a>
-            <a href="ListHouseServlet">Room</a>
-            <a href="ListBillServlet">Orders</a>
-            <a href="ListAccountServlet">Users</a>
-            <a href="admin_contacts.html">Messages</a>
-         </nav>
-   
-         <div class="icons">
-            <div id="menu-btn" class="fas fa-bars"></div>
-            <div id="user-btn" class="fas fa-user"></div>
-         </div>
-   
-         <div class="account-box">
-          <p>username : <span></span></p>
-          <a href="LogoutServlet" class="delete-btn">logout</a>
-          <div>
-            <a href="Login.jsp">login</a> |
-            <a href="Register.jsp">register</a>
-          </div>
-   
-      </div>
-   </header>
+        <header>
+            <c:import url="Header_LoginedAdmin.jsp"></c:import>
+        </header>
         
        
         <section class="add-products">
@@ -170,22 +140,9 @@
                 }
                 %>
         </select>
-        <input
-          type="number"
-          name="imgid"
-          value="<%=hi.getImgid() %>"
-          class="box"
-          placeholder="Enter IMG_ID"
-          hidden="true"
-        />
-            <h2>IMG_Link</h2>
-        <input
-          type="text"
-          name="imglink"
-          value="<%=hi.getImglink() %>"
-          class="box"
-          placeholder="Enter IMG_Link"
-        />
+            
+        
+        
         <input class="Update-btn" type="submit" value="Update" name="Update" />
       </form>
     </section>

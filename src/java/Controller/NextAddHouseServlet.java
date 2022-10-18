@@ -11,13 +11,13 @@ import Dao.MenuDAO;
 import Model.House;
 import Model.Location;
 import Model.Menu;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -68,9 +68,6 @@ public class NextAddHouseServlet extends HttpServlet {
         List<Location> llist = ldao.getLocation();
         MenuDAO mdao = new MenuDAO();
         List<Menu> mlist = mdao.getMenu();
-        HouseDAO hdao = new HouseDAO();
-        House h = hdao.getHouses();
-        request.setAttribute("house", h);
         request.setAttribute("llist", llist);
         request.setAttribute("mlist", mlist);
         request.getRequestDispatcher("AddHouse.jsp").forward(request, response);

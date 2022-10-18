@@ -7,13 +7,13 @@ package Controller;
 
 import Dao.AccountDAO;
 import Model.Account;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -89,6 +89,7 @@ public class LoginServlet extends HttpServlet {
                     if(a.getRole().getId() == 0){
                         HttpSession session = request.getSession(true);
                         session.setAttribute("name", a.getFullname());
+                        session.setAttribute("userid", a.getUserid());
                         response.sendRedirect("AdminIndex.jsp");
                     }
                     else{

@@ -8,14 +8,14 @@ import Dao.BillDAO;
 import Dao.BillDetailDAO;
 import Model.Bill;
 import Model.BillDetail;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -76,6 +76,7 @@ public class AddBillServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
+        int billid = Integer.parseInt(request.getParameter("billid"));
         String dateString =request.getParameter("date");
         SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
@@ -88,10 +89,6 @@ public class AddBillServlet extends HttpServlet {
         float total = Float.parseFloat(request.getParameter("total"));
         int status = 1;
         int userid = Integer.parseInt(request.getParameter("userid"));
-        Bill b = new Bill(-1, date, total, status, userid);
-        BillDAO dao = new BillDAO();
-        dao.addBill(b);
-        int billid = Integer.parseInt(request.getParameter("billid"));
         int houseid = Integer.parseInt(request.getParameter("houseid"));
         String dateString1 =request.getParameter("startdate");
         SimpleDateFormat formatDate1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -112,6 +109,9 @@ public class AddBillServlet extends HttpServlet {
             return;
         }
         String note = request.getParameter("note");
+        Bill b = new Bill(-1, date, total, status, userid);
+        BillDAO dao = new BillDAO();
+        dao.addBill(b);
         BillDetail bd = new BillDetail(-1, billid, houseid, date1, date2, note);
         BillDetailDAO ddao = new BillDetailDAO();
         ddao.addBillDetail(bd);
