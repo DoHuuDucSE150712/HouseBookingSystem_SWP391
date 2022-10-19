@@ -519,17 +519,19 @@
                 <img src="Images/travel.jpg" alt=""/>
             </div>
 
-            <form action="">
+            <form name="submit-to-google-sheet" >
                 <div class="inputBox">
-                    <input type="text" placeholder="name">
-                    <input type="email" placeholder="email">
+                    <input type="text" name="Name" placeholder="name">
+                    <input type="email"  name="Email"   placeholder="email">
                 </div>
                 <div class="inputBox">
-                    <input type="number" placeholder="number">
-                    <input type="text" placeholder="subject">
+                    <input type="number"  name="Number"  placeholder="number">
+                    <input type="text" name="Subject" placeholder="subject">
                 </div>
-                <textarea placeholder="message" name="" id="" cols="30" rows="10"></textarea>
-                <input type="submit" class="btn" value="send message">
+                <textarea placeholder="message" name="Message" id="" cols="30" rows="10"></textarea>
+                <button type="submit" class="btn">
+                send <i class="fas fa-paper-plane"></i>
+              </button>
             </form>
 
         </div>
@@ -597,6 +599,18 @@
     </section>
 
 
+    <script>
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbzmx3GEyLiss69xqkLRzbnbatnyo3kYTUCatb3PQUEGjxJbL3HubmFjoPFAYxoWXylIZg/exec";
+      const form = document.forms["submit-to-google-sheet"];
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then((response) => console.log("Success!", response))
+          .catch((error) => console.error("Error!", error.message));
+      });
+    </script>
 
 
 
@@ -608,8 +622,8 @@
 
 
 
-
-
+    <!-- jquery cdn link  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 

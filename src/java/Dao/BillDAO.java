@@ -173,31 +173,4 @@ public class BillDAO {
         return b;
     }
     
-    public List<Bill> getBillbyDate(Date date){
-        String sql = "select * from Bill where date = ?";
-        List<Bill> list = new ArrayList<>();
-        try {
-            //tạo khay chứa câu lệnh
-            PreparedStatement pre = con.prepareStatement(sql);
-            java.sql.Date DateSql = new java.sql.Date(date.getTime());
-            pre.setDate(1, DateSql);
-            ResultSet resultSet = pre.executeQuery();
-            while(resultSet.next()){
-                int billid = resultSet.getInt(1);
-                Date date1 = resultSet.getDate(2);
-                float total = resultSet.getFloat(3);
-                int status = resultSet.getInt(4);
-                int userid = resultSet.getInt(5);
-
-                //tạo model hứng giữ liệu
-                Bill b = new Bill(billid, date1, total, status, userid);
-                list.add(b);
-            }
-        } catch (Exception e) {
-            System.out.println("error: "+e);
-        }
-        
-        return list;
-    }
-    
 }

@@ -115,7 +115,7 @@ public class BillDetailDAO {
     
     public void deleteBillDetail(int id){
         String sql = "DELETE FROM [dbo].[Bill_detail]\n" +
-                "      WHERE bill_id = ?";
+                    "      WHERE billdetail_id = ?";
         try {
             PreparedStatement pre = con.prepareStatement(sql);
             pre.setInt(1, id);

@@ -252,6 +252,35 @@ public class AccountDAO {
         return false;
     }
     
+    public Account getAccounts(){
+        String sql = "select * from dbo.Users";
+        Account a = new Account();
+        try{
+            //tạo khay chứa câu lệnh
+            PreparedStatement pre = con.prepareStatement(sql);
+            //chạy câu lệnh và tạo khay chứa kết quả câu lệnh
+            ResultSet resultSet = pre.executeQuery();
+            while(resultSet.next()){
+                int userid = resultSet.getInt(1);
+                String fullname = resultSet.getString(2);
+                String userimg = resultSet.getString(3);
+                String username = resultSet.getString(4);
+                String password = resultSet.getString(5);
+                int phone = resultSet.getInt(6);
+                int status = resultSet.getInt(7);
+                int roleid = resultSet.getInt(8);
+
+                //tạo model hứng giữ liệu
+                Role role = new Role(roleid, null);
+               a = new Account(userid, fullname, userimg, username, password, phone, status, role);
+            }
+        } catch (Exception e) {
+            System.out.println("error: "+e);
+        }
+        return a;
+    }
+
+    
 //    public static void main(String[] args) {
 //        AccountDAO a = new AccountDAO();
 //    }
