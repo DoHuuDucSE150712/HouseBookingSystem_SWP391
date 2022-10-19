@@ -37,10 +37,12 @@
             <a href="#review">review</a>
             <a href="#contact">contact</a>
         </nav>
-
+        ${username}
         <div class="icons">
             <i class="fas fa-search" id="search-btn"></i>
-            <i class="fas fa-user" id="login-btn"></i>
+            <a href="login.jsp">
+                <i class="fas fa-user" id=""></i>
+            </a>
         </div>
 
         <form action="" class="search-bar-container">
@@ -51,24 +53,6 @@
     </header>
 
     <!-- header section ends -->
-    <!-- login form container  -->
-
-    <div class="login-form-container">
-
-        <i class="fas fa-times" id="form-close"></i>
-
-        <form action="LoginServlet" method="post">
-            <h3>login</h3>
-            <input type="text" name="username" class="box" placeholder="enter your email">
-            <input type="password" name="password" class="box" placeholder="enter your password">
-            <input type="submit" value="login now" class="btn">
-            <input type="checkbox" id="remember">
-            <label for="remember">remember me</label>
-            <p>forget password? <a href="#">click here</a></p>
-            <p>don't have and account? <a href="Register.jsp">register now</a></p>
-        </form>
-
-    </div>
 
     <!-- home section starts  -->
 
@@ -519,19 +503,17 @@
                 <img src="Images/travel.jpg" alt=""/>
             </div>
 
-            <form name="submit-to-google-sheet" >
+            <form name="submit-to-google-sheet">
                 <div class="inputBox">
                     <input type="text" name="Name" placeholder="name">
-                    <input type="email"  name="Email"   placeholder="email">
+                    <input type="email" name="Email" placeholder="email">
                 </div>
                 <div class="inputBox">
-                    <input type="number"  name="Number"  placeholder="number">
+                    <input type="number" name="Number" placeholder="number">
                     <input type="text" name="Subject" placeholder="subject">
                 </div>
                 <textarea placeholder="message" name="Message" id="" cols="30" rows="10"></textarea>
-                <button type="submit" class="btn">
-                send <i class="fas fa-paper-plane"></i>
-              </button>
+                <input type="submit" class="btn" value="send message">
             </form>
 
         </div>
@@ -598,8 +580,7 @@
 
     </section>
 
-
-    <script>
+<script>
       const scriptURL =
         "https://script.google.com/macros/s/AKfycbzmx3GEyLiss69xqkLRzbnbatnyo3kYTUCatb3PQUEGjxJbL3HubmFjoPFAYxoWXylIZg/exec";
       const form = document.forms["submit-to-google-sheet"];
@@ -622,8 +603,8 @@
 
 
 
-    <!-- jquery cdn link  -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- jquery cdn link  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js%22%3E</script>
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 

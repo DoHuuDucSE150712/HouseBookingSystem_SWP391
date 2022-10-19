@@ -5,7 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,12 +24,36 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
     <body>
-        <header>
-            <c:import url="Header_LoginedAdmin.jsp"></c:import>
-        </header>
+        
     <section class="add-products">
       <h1 class="title">Add Account</h1>
+<header class="header">
 
+      <div class="flex">
+   
+          <a href="AdminIndex.jsp" class="logo">Admin<span>Panel</span></a>
+   
+         <nav class="navbar">
+            <a href="AdminIndex.jsp"><span>Home</span></a>
+            <a href="ListHouseServlet">Room</a>
+            <a href="ListBillServlet">Orders</a>
+            <a href="ListAccountServlet">Users</a>
+            <a href="ListCommentServlet">Messages</a>
+         </nav>
+   
+         <div class="icons">
+            <div id="menu-btn" class="fas fa-bars"></div>
+            <div id="user-btn" class="fas fa-user"></div>
+         </div>
+   
+         <div class="account-box">
+                <p>username : <span>${fullname}</span></p>
+                <a href="LogoutServlet" class="delete-btn">logout</a>
+
+            </div>
+   
+      </div>
+   </header>
       <form action="AddAccountServlet" method="post" >
 <!--        <h3>Update Account</h3>-->
         <input
@@ -93,3 +116,4 @@
     </section>
     </body>
 </html>
+<script src="admin_script.js"></script>

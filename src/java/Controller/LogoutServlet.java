@@ -4,13 +4,14 @@
  */
 package Controller;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,9 +32,21 @@ public class LogoutServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            HttpSession session=request.getSession();
-            session.removeAttribute("account");
+            HttpSession session = request.getSession();
+            boolean a = (boolean) session.getAttribute("rememberme");
+            if (!a) {
+                Cookie[] cookies = request.getCookies();
+                if (cookies != null) {
+                    for (int i = 0; i < cookies.length; i++) {
+                        cookies[i].setMaxAge(0);
+                        response.addCookie(cookies[i]);
+                    }
+                }
+            }
+            session.removeAttribute("fullname");
+            session.removeAttribute("username");
+            session.removeAttribute("password");
+            session.removeAttribute("rememberme");
             response.sendRedirect("Index.jsp");
         }
     }

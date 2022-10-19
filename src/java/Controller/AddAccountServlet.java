@@ -8,12 +8,12 @@ package Controller;
 import Dao.AccountDAO;
 import Model.Account;
 import Model.Role;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -78,13 +78,14 @@ public class AddAccountServlet extends HttpServlet {
         String userimg = request.getParameter("userimg");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        int phone = Integer.parseInt(request.getParameter(("phone")));
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
         int roleid = 1;
         int status = 1;
         Role role = new Role(roleid, null);
-        Account a = new Account(-1, fullname, userimg, username, password, phone, status, role);
+        Account a = new Account(-1, fullname, userimg, username, password, email, phone, status, role);
         AccountDAO dao = new AccountDAO();
-        dao.addAccount(a);
+        dao.signupAccount(a);
         response.sendRedirect("ListAccountServlet");
     }
 
