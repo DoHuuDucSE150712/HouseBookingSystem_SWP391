@@ -57,6 +57,7 @@ public class LoginServlet extends HttpServlet {
                         for (Account acc : list) {
                             if (username.equals(acc.getUsername()) && password.equals(acc.getPass())
                                     && acc.getRole().getId() == 0) {//admin role
+                                session.setAttribute("email", acc.getEmail());
                                 session.setAttribute("fullname", acc.getFullname());
                                 session.setAttribute("username", acc.getUsername());
                                 session.setAttribute("password", acc.getPass());
@@ -74,6 +75,7 @@ public class LoginServlet extends HttpServlet {
                             else if (username.equals(acc.getUsername()) && password.equals(acc.getPass())
                                     && acc.getRole().getId() == 2) {//customer
                                 if(a.getStatus() == 1){
+                                    session.setAttribute("email", acc.getEmail());
                                     session.setAttribute("fullname", acc.getFullname());
                                 session.setAttribute("username", acc.getUsername());
                                 session.setAttribute("password", acc.getPass());
@@ -98,6 +100,7 @@ public class LoginServlet extends HttpServlet {
                         for (Account acc : list) {
                             if (username.equals(acc.getUsername()) && password.equals(acc.getPass())
                                     && acc.getRole().getId() == 0) {
+                                session.setAttribute("email", acc.getEmail());
                                 session.setAttribute("fullname", acc.getFullname());
                                 session.setAttribute("username", acc.getUsername());
                                 session.setAttribute("password", acc.getPass());
@@ -108,6 +111,7 @@ public class LoginServlet extends HttpServlet {
                             else if (username.equals(acc.getUsername()) && password.equals(acc.getPass())
                                     && acc.getRole().getId() == 2) {//customer
                                    if(a.getStatus() == 1){
+                                       session.setAttribute("email", acc.getEmail());
                                        session.setAttribute("status", acc.getStatus());
                                 session.setAttribute("fullname", acc.getFullname());
                                 session.setAttribute("username", acc.getUsername());

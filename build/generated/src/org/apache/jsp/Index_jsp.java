@@ -539,15 +539,32 @@ public final class Index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        </h1>\r\n");
       out.write("\r\n");
       out.write("        <div class=\"row\">\r\n");
-      out.write("\r\n");
       out.write("            <div class=\"image\">\r\n");
       out.write("                <img src=\"Images/travel.jpg\" alt=\"\"/>\r\n");
       out.write("            </div>\r\n");
-      out.write("\r\n");
       out.write("            <form name=\"submit-to-google-sheet\">\r\n");
       out.write("                <div class=\"inputBox\">\r\n");
       out.write("                    <input type=\"text\" name=\"Name\" placeholder=\"name\">\r\n");
-      out.write("                    <input type=\"email\" name=\"Email\" placeholder=\"email\">\r\n");
+      out.write("                ");
+
+                String email = (String)session.getAttribute("email");
+                if(email == null){
+                
+      out.write("\r\n");
+      out.write("                <input type=\"email\" name=\"Email\" value=\"\" placeholder=\"email\">\r\n");
+      out.write("                ");
+
+                    }else{
+                
+      out.write("\r\n");
+      out.write("                <input type=\"email\" name=\"Email\" value=\"");
+      out.print(email);
+      out.write("\" placeholder=\"email\">\r\n");
+      out.write("                ");
+
+                    }
+                
+      out.write("\r\n");
       out.write("                </div>\r\n");
       out.write("                <div class=\"inputBox\">\r\n");
       out.write("                    <input type=\"number\" name=\"Number\" placeholder=\"number\">\r\n");
@@ -556,7 +573,6 @@ public final class Index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <textarea placeholder=\"message\" name=\"Message\" id=\"\" cols=\"30\" rows=\"10\"></textarea>\r\n");
       out.write("                <input type=\"submit\" class=\"btn\" value=\"send message\">\r\n");
       out.write("            </form>\r\n");
-      out.write("\r\n");
       out.write("        </div>\r\n");
       out.write("\r\n");
       out.write("    </section>\r\n");

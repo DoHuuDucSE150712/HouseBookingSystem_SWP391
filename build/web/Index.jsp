@@ -498,15 +498,24 @@
         </h1>
 
         <div class="row">
-
             <div class="image">
                 <img src="Images/travel.jpg" alt=""/>
             </div>
-
             <form name="submit-to-google-sheet">
                 <div class="inputBox">
                     <input type="text" name="Name" placeholder="name">
-                    <input type="email" name="Email" placeholder="email">
+                <%
+                String email = (String)session.getAttribute("email");
+                if(email == null){
+                %>
+                <input type="email" name="Email" value="" placeholder="email">
+                <%
+                    }else{
+                %>
+                <input type="email" name="Email" value="<%=email%>" placeholder="email">
+                <%
+                    }
+                %>
                 </div>
                 <div class="inputBox">
                     <input type="number" name="Number" placeholder="number">
@@ -515,7 +524,6 @@
                 <textarea placeholder="message" name="Message" id="" cols="30" rows="10"></textarea>
                 <input type="submit" class="btn" value="send message">
             </form>
-
         </div>
 
     </section>

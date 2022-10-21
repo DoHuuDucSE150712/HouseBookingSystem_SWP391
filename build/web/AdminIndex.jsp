@@ -28,7 +28,7 @@
 
       <div class="flex">
    
-          <a href="AdminIndex.jsp" class="logo">Admin<span>Panel</span></a>
+          <a href="Index.jsp" class="logo">Admin<span>Panel</span></a>
    
          <nav class="navbar">
             <a href="AdminIndex.jsp"><span>Home</span></a>
