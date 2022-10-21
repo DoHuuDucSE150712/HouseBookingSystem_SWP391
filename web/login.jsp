@@ -1,87 +1,53 @@
+<%-- 
+    Document   : Login
+    Created on : Oct 1, 2022, 1:13:13 AM
+    Author     : Admin
+--%>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+        <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <!------ Include the above in your HEAD tag ---------->
-
-        <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
-        <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
-        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-        <link href="login_style.css" rel="stylesheet"/>
-
-
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="style.css">
+    </head>
     <body>
-
         <%
-           String username = "";
-           String password = "";
-           Cookie[] cookies = request.getCookies();
-           if (cookies != null) {
-               for (Cookie cookie: cookies) {
-                   if ((cookie.getName()).equals("cusername")) {
-                       username = cookie.getValue();
-                   } else if ((cookie.getName()).equals("cpassword")) {
-                       password = cookie.getValue();
-                   }
-               }
+        String mess ="";
+        if (request.getAttribute("mess") !=null) {
+                mess =request.getAttribute("mess").toString();
             }
         %>
-
-
-        <div class="container">
-            <div class="row">
-                <div class="col-md-5 mx-auto">
-                    <div id="first">
-                        <div class="myform form ">
-                            <div class="logo mb-3">
-                                <div class="col-md-12 text-center">
-                                    <h1>Login</h1>
-                                </div>
-                            </div>
-                            <form action="LoginServlet" method="post" name="login">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">User name</label>
-                                    <input type="text" name="username"  value="<%=username %>" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter User name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Password</label>
-                                    <input type="password" name="password" value="<%=password %>"id="password"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password">
-                                </div>
-
-                                
-                                <div class="myformother">
-                                    <input type="checkbox" checked="checked" name="rememberme" id="rememberMeCheckbox">
-                                    <label for="rememberMeCheckbox">Remember me</label>
-                                    <a   href="">Forgot your password?</a>
-                                </div>
-                                <!--mess-->
-                                <p class="text-danger">${mess}</p>
-                                <div class="col-md-12 text-center ">
-                                    <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
-                                </div>
-                                <div class="col-md-12 ">
-                                    <div class="login-or">
-                                        <hr class="hr-or">
-                                        <span class="span-or">or</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-3">
-                                    <p class="text-center">
-                                        <a href="https://accounts.google.com/o/oauth2/auth?scope=profile%20email&redirect_uri=http://localhost:6969/HouseBookingSystem_SWP391/LoginGoogleServlet&response_type=code
-                                           &client_id=933185261016-juojrbtjn75p13no3s23mo0qqltlpvn5.apps.googleusercontent.com&approval_prompt=force" class="google btn mybtn"><i class="fa fa-google-plus">
-                                            </i> Login using Google
-                                        </a>
-                                    </p>
-                                </div>
-                                <div class="form-group" id="d">
-                                    <p class="text-center">Don't have account? <a href="signup.jsp"  id="signup">Sign up here</a></p>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>   
-
+        <div class="form-container">
+   <form action="LoginServlet" method="post">
+      <h3>login now</h3>
+      <input type="text" name="username" placeholder="enter your username" required class="box">
+      <input type="password" name="password" placeholder="enter your password" required class="box">
+      <input type="submit" name="submit" value="Login" class="btn">
+      <p>don't have an account? <a href="Register.jsp">Register Now</a></p>
+   </form>
+</div>
+<!--        <form action="LoginServlet" method="post" class="formlogin"
+            <table>
+                <tr>
+                    <td>Username</td>
+                    <td><input type="text" name="username" placeholder="Input your username"></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" name="password" placeholder="Input your password"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Login" name="action"></td>
+                </tr>
+            </table>
+        </form>-->
+        <p style="color: red" ><%=mess %> </p>
     </body>
+</html>

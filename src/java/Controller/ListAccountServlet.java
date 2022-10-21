@@ -7,13 +7,13 @@ package Controller;
 
 import Dao.AccountDAO;
 import Model.Account;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -36,7 +36,7 @@ public class ListAccountServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             AccountDAO dao = new AccountDAO();
-            List<Account> list = dao.getAllAccount();
+            List<Account> list = dao.getAccount();
             request.setAttribute("AccountList", list);
             request.getRequestDispatcher("ListAccount.jsp").forward(request, response);
         }

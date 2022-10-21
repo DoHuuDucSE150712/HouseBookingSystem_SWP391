@@ -116,14 +116,14 @@
                 <div class="image">
                     <img src="Images/vn.jpg" alt=""/>
                 </div>
+
                 <form action="GetLocationServlet">
                     <div class="inputBox">
                         <h3>where to</h3>
-                        <select class="required">
+                        <select name="l">
                             <option>Choose your city</option>
                             <c:forEach items="${requestScope.LISTLOCATION}" var="l">
                                 <option value="${l.id}">${l.name}</option>
-                             <p id="location"></p>
                             </c:forEach>
                         </select>
                     </div>
@@ -140,7 +140,7 @@
                         <input type="date">
                     </div>
                     <!-- <input type="submit" class="btn" value="book now" href="#packages" >  -->
-                    <a href="UserListHouseServlet" class="btn">book now</a>
+                    <a href="ListHouseServlet" class="btn">book now</a>
 
                 </form>
 

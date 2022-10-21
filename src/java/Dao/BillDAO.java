@@ -15,10 +15,10 @@ import java.util.List;
 
 /**
  *
- * @author Admin
+ * @author Asus
  */
 public class BillDAO {
-    Connection con;
+        Connection con;
     public BillDAO(){
         DBContext dbcontext = new DBContext();
         try {
@@ -30,147 +30,37 @@ public class BillDAO {
     }
     
     public List<Bill> getBill(){
-        String sql = "select * from Bill";
+        String sql = "select * from Bill_detail";
         List<Bill> list = new ArrayList<>();
-        try{
+        try {
             //tạo khay chứa câu lệnh
             PreparedStatement pre = con.prepareStatement(sql);
             //chạy câu lệnh và tạo khay chứa kết quả câu lệnh
             ResultSet resultSet = pre.executeQuery();
             while(resultSet.next()){
-                int billid = resultSet.getInt(1);
-                Date date = resultSet.getDate(2);
-                float total = resultSet.getFloat(3);
-                int status = resultSet.getInt(4);
-                int userid = resultSet.getInt(5);
-
+//                int houseid = resultSet.getInt(1);
+//                Date postdate = resultSet.getDate(2);
+//                String housename = resultSet.getString(3);
+//                String review = resultSet.getString(4);
+//                double price = resultSet.getDouble(5);
+//                int status = resultSet.getInt(6);
+//                String address = resultSet.getString(7);
+//                String description = resultSet.getString(8);
+//                int locationid = resultSet.getInt(9);
+//                int menuid = resultSet.getInt(10);
+                
+                int bill_id = resultSet.getInt(1);
+                int house_id = resultSet.getInt(2);
+                Date start_date = resultSet.getDate(3);
+                Date end_date = resultSet.getDate(4);
+                String note = resultSet.getString(5);
+                Bill bill = new Bill(bill_id, house_id, start_date, end_date, note);
                 //tạo model hứng giữ liệu
-                Bill b = new Bill(billid, date, total, status, userid);
-               
-               list.add(b);
+                list.add(bill);
             }
         } catch (Exception e) {
             System.out.println("error: "+e);
         }
-        
-        return list;
+            return list;
     }
-    
-    public Bill getBills(){
-        String sql = "select * from Bill";
-        Bill b = new Bill();
-        try{
-            //tạo khay chứa câu lệnh
-            PreparedStatement pre = con.prepareStatement(sql);
-            //chạy câu lệnh và tạo khay chứa kết quả câu lệnh
-            ResultSet resultSet = pre.executeQuery();
-            while(resultSet.next()){
-                int billid = resultSet.getInt(1);
-                Date date = resultSet.getDate(2);
-                float total = resultSet.getFloat(3);
-                int status = resultSet.getInt(4);
-                int userid = resultSet.getInt(5);
-
-                //tạo model hứng giữ liệu
-                b = new Bill(billid, date, total, status, userid);
-            }
-        } catch (Exception e) {
-            System.out.println("error: "+e);
-        }
-        return b;
-    }
-    
-    public void editBill(Bill bill){
-        String sql = "UPDATE [dbo].[Bill]\n" +
-                "   SET [date] = ?\n" +
-                "      ,[total] = ?\n" +
-                "      ,[status] = ?\n" +
-                "      ,[user_id] = ?\n" +
-                " WHERE bill_id = ?";
-        try {
-            //tạo khay chứa câu lệnh
-            PreparedStatement pre = con.prepareStatement(sql);
-            //set gia tri cho dau ? 
-            java.sql.Date DateSql = new java.sql.Date(bill.getDate().getTime());
-            pre.setDate(1, DateSql);
-            pre.setFloat(2, bill.getTotal());
-            pre.setInt(3, bill.getStatus());
-            pre.setInt(4, bill.getUserid());
-            pre.setInt(5, bill.getBillid());
-            //chạy câu lệnh và tạo khay chứa kết quả câu lệnh
-            pre.executeUpdate();
-
-        } catch (Exception e) {
-            System.out.println("error :  " + e);
-        }
-    }
-    
-    public void deleteBill(int id){
-        String sql = "DELETE FROM [dbo].[Bill]\n" +
-                    "      WHERE bill_id = ?";
-        try {
-            PreparedStatement pre = con.prepareStatement(sql);
-            pre.setInt(1, id);
-            pre.executeUpdate();
-
-        } catch (Exception e) {
-            System.out.println("error :  " + e);
-        }
-    }
-    
-    public void addBill(Bill bill){
-        String sql = "INSERT INTO [dbo].[Bill]\n" +
-                    "           ([date]\n" +
-                    "           ,[total]\n" +
-                    "           ,[status]\n" +
-                    "           ,[user_id])\n" +
-                    "     VALUES\n" +
-                    "           (?\n" +
-                    "           ,?\n" +
-                    "           ,?\n" +
-                    "           ,?)";
-        try {
-            //tạo khay chứa câu lệnh
-            PreparedStatement pre = con.prepareStatement(sql);
-            //set gia tri cho dau ? 
-            java.sql.Date DateSql = new java.sql.Date(bill.getDate().getTime());
-            pre.setDate(1, DateSql);
-            pre.setFloat(2, bill.getTotal());
-            pre.setInt(3, bill.getStatus());
-            pre.setInt(4, bill.getUserid());
-            //chạy câu lệnh và tạo khay chứa kết quả câu lệnh
-            pre.executeUpdate();
-
-        } catch (Exception e) {
-            System.out.println("error :  " + e);
-        }
-    }
-    
-    public Bill getBillbyId(int id){
-            String sql = "select * from Bill where bill_id = ?";
-        Bill b = new Bill();
-        
-        try {
-            //tạo khay chứa câu lệnh
-            PreparedStatement pre = con.prepareStatement(sql);
-            pre.setInt(1, id);
-            //chạy câu lệnh và tạo khay chứa kết quả câu lệnh
-            ResultSet resultSet = pre.executeQuery();
-            while(resultSet.next()){
-                int billid = resultSet.getInt(1);
-                Date date = resultSet.getDate(2);
-                float total = resultSet.getFloat(3);
-                int status = resultSet.getInt(4);
-                int userid = resultSet.getInt(5);
-
-                //tạo model hứng giữ liệu
-                b = new Bill(billid, date, total, status, userid);
-            }
-        } catch (Exception e) {
-            System.out.println("error: "+e);
-        }
-        
-        return b;
-    }
-    
 }

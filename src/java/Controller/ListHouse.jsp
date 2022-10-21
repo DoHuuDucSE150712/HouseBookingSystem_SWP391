@@ -45,15 +45,12 @@
                     <th>Address</th>
                     <th>Description</th>
                     <th>Location</th>
-                    <th>Menu</th>
-                    <th>Action</th>
                     </tr>
                 </thead>
             <%
                 for(House h : list){
                 %>
                 <tr>
-                    <td><%=h.getHouseid() %></td>
                     <td><%=h.getHousename() %></td>
                     <td><%=h.getPostdate() %></td>
                     <td><%=h.getReview() %></td>
@@ -67,12 +64,7 @@
                     <td><%=h.getDescription() %></td>
                     <td><%=h.getLocation().getId() %></td>
                     <td><%=h.getMenu().getId() %></td>
-                    <td>
-                            <span class="action_btn">
-                                <a href="NextEditHouseServlet?id=<%=h.getHouseid() %>">Update</a>
-                                <a href="DeleteHouseServlet?id=<%=h.getHouseid() %>">Delete</a>
-                                <a href="NextAddHouseServlet">Add</a>
-                            </span>
+
                 </tr>
                 <%
                 }
