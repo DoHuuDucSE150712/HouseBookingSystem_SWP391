@@ -4,20 +4,25 @@
  */
 package Controller;
 
-import Dao.BillDetailDAO;
-import Model.BillDetail;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import Dao.BillDAO;
+import Model.Bill;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Admin
+ * @author Asus
  */
-public class getBillServlet extends HttpServlet {
+@WebServlet(name = "GetBillServlet", urlPatterns = {"/GetBillServlet"})
+public class GetBillServlet extends HttpServlet {
+    private static final String ERROR = "error.jsp";
+    private static final String SUCCESS = "bill.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,17 +36,19 @@ public class getBillServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            int id = Integer.parseInt(request.getParameter("id"));
-            BillDetail b = new BillDetail();
-            BillDetailDAO dao = new BillDetailDAO();
-            b = dao.getBillDeatailbyID(id);
-            if(b != null){
-                request.setAttribute("bid", b);
-                request.getRequestDispatcher("BillDetail.jsp").forward(request, response);
-            }
+        String url = ERROR;
+        try {
+            BillDAO billDAO = new BillDAO();
+            List<Bill> list = billDAO.getBill();
+            request.setAttribute("LISTBILL", list);
+            url = SUCCESS;
+            
+        } catch (Exception e) {
+            log("ERROR at GetBillServlet: "+e.toString());
+        }finally{
+            request.getRequestDispatcher(url).forward(request, response);
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

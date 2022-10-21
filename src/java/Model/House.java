@@ -17,7 +17,7 @@ public class House {
     private Date postdate;
     private String housename;
     private String review;
-    private float houseprice;
+    private double houseprice;
     private int status;
     private String address;
     private String description;
@@ -27,7 +27,7 @@ public class House {
     public House() {
     }
 
-    public House(int houseid, Date postdate, String housename, String review, float houseprice, int status, String address, String description, Location location, Menu menu) {
+    public House(int houseid, Date postdate, String housename, String review, double houseprice, int status, String address, String description, Location location, Menu menu) {
         this.houseid = houseid;
         this.postdate = postdate;
         this.housename = housename;
@@ -72,11 +72,11 @@ public class House {
         this.review = review;
     }
 
-    public float getHouseprice() {
+    public double getHouseprice() {
         return houseprice;
     }
 
-    public void setHouseprice(float houseprice) {
+    public void setHouseprice(double houseprice) {
         this.houseprice = houseprice;
     }
 
@@ -119,7 +119,7 @@ public class House {
     public void setMenu(Menu menu) {
         this.menu = menu;
     }
-
+    
     
     
 }

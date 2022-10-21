@@ -45,7 +45,7 @@ public class HouseDAO {
                 Date postdate = resultSet.getDate(2);
                 String housename = resultSet.getString(3);
                 String review = resultSet.getString(4);
-                float price = resultSet.getFloat(5);
+                double price = resultSet.getDouble(5);
                 int status = resultSet.getInt(6);
                 String address = resultSet.getString(7);
                 String description = resultSet.getString(8);
@@ -80,7 +80,7 @@ public class HouseDAO {
                 Date postdate = resultSet.getDate(2);
                 String housename = resultSet.getString(3);
                 String review = resultSet.getString(4);
-                float price = resultSet.getFloat(5);
+                double price = resultSet.getDouble(5);
                 int status = resultSet.getInt(6);
                 String address = resultSet.getString(7);
                 String description = resultSet.getString(8);
@@ -119,7 +119,7 @@ public class HouseDAO {
             pre.setDate(1, DateSql);
             pre.setString(2, house.getHousename());
             pre.setString(3, house.getReview());
-            pre.setFloat(4, house.getHouseprice());
+            pre.setDouble(4, house.getHouseprice());
             pre.setInt(5, house.getStatus());
             pre.setString(6, house.getAddress());
             pre.setString(7, house.getDescription());
@@ -174,7 +174,7 @@ public class HouseDAO {
             pre.setDate(1, DateSql);
             pre.setString(2, house.getHousename());
             pre.setString(3, house.getReview());
-            pre.setFloat(4, house.getHouseprice());
+            pre.setDouble(4, house.getHouseprice());
             pre.setInt(5, house.getStatus());
             pre.setString(6, house.getAddress());
             pre.setString(7, house.getDescription());
@@ -186,39 +186,6 @@ public class HouseDAO {
         } catch (Exception e) {
             System.out.println("error :  " + e);
         }
-    }
-    
-    public List<House> getHousebyName(String name){
-        String sql = "select * from House where house_name like '%"+name+"%'";
-        List<House> list = new ArrayList<>();
-        try {
-            //tạo khay chứa câu lệnh
-            PreparedStatement pre = con.prepareStatement(sql);
-            //chạy câu lệnh và tạo khay chứa kết quả câu lệnh
-            ResultSet resultSet = pre.executeQuery();
-            while(resultSet.next()){
-                int houseid = resultSet.getInt(1);
-                Date postdate = resultSet.getDate(2);
-                String housename = resultSet.getString(3);
-                String review = resultSet.getString(4);
-                float price = resultSet.getFloat(5);
-                int status = resultSet.getInt(6);
-                String address = resultSet.getString(7);
-                String description = resultSet.getString(8);
-                int locationid = resultSet.getInt(9);
-                int menuid = resultSet.getInt(10);
-
-                //tạo model hứng giữ liệu
-                Menu menu = new Menu(menuid, null);
-                Location location = new Location(locationid, null);
-               House h = new House(houseid, postdate, housename, review, price, status, address, description, location, menu);
-                list.add(h);
-            }
-        } catch (Exception e) {
-            System.out.println("error: "+e);
-        }
-        
-        return list;
     }
     
 }

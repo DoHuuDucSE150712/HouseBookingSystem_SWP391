@@ -7,20 +7,21 @@ package Controller;
 
 import Dao.HouseDAO;
 import Model.House;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
  * @author Admin
  */
 public class ListHouseServlet extends HttpServlet {
-
+private static final String ERROR = "error.jsp";
+    private static final String SUCCESS = "ListHouse.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -33,14 +34,18 @@ public class ListHouseServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+        String url = ERROR;
+            try {
             HouseDAO dao = new HouseDAO();
             List<House> list = dao.getHouse();
             request.setAttribute("HouseList", list);
-            request.getRequestDispatcher("ListHouse.jsp").forward(request, response);
+            url = SUCCESS;
+            } catch (Exception e) {
+                log("ERROR at ListHouseServlet: "+e.toString());
+            }finally{
+                request.getRequestDispatcher(url).forward(request, response);
+            }
         }
-    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

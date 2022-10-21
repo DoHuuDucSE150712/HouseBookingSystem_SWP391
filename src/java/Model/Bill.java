@@ -8,65 +8,66 @@ import java.util.Date;
 
 /**
  *
- * @author Admin
+ * @author Asus
  */
 public class Bill {
-    private int billid;
-    private Date date;
-    private float total;
-    private int status;
-    private int userid;
+    private int bill_id;
+    private int house_id;
+    private Date start_date;
+    private Date end_date;
+    private String note;
 
     public Bill() {
     }
 
-    public Bill(int billid, Date date, float total, int status, int userid) {
-        this.billid = billid;
-        this.date = date;
-        this.total = total;
-        this.status = status;
-        this.userid = userid;
+    public Bill(int bill_id, int house_id, Date start_date, Date end_date, String note) {
+        this.bill_id = bill_id;
+        this.house_id = house_id;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.note = note;
     }
 
-    public int getBillid() {
-        return billid;
+    public int getBill_id() {
+        return bill_id;
     }
 
-    public void setBillid(int billid) {
-        this.billid = billid;
+    public void setBill_id(int bill_id) {
+        this.bill_id = bill_id;
     }
 
-    public Date getDate() {
-        return date;
+    public int getHouse_id() {
+        return house_id;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setHouse_id(int house_id) {
+        this.house_id = house_id;
     }
 
-    public float getTotal() {
-        return total;
+    public Date getStart_date() {
+        return start_date;
     }
 
-    public void setTotal(float total) {
-        this.total = total;
+    public void setStart_date(Date start_date) {
+        this.start_date = start_date;
     }
 
-    public int getStatus() {
-        return status;
+    public Date getEnd_date() {
+        return end_date;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setEnd_date(Date end_date) {
+        this.end_date = end_date;
     }
 
-    public int getUserid() {
-        return userid;
+    public String getNote() {
+        return note;
     }
 
-    public void setUserid(int userid) {
-        this.userid = userid;
+    public void setNote(String note) {
+        this.note = note;
     }
-
+    
+    
     
 }

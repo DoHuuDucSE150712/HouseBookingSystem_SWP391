@@ -9,6 +9,7 @@
 <%@page import="java.util.List"%>
 <%@page import="Model.Role"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -35,33 +36,9 @@
                 a = (Account) request.getAttribute("account");
             }
         %>
-        <header class="header">
-
-      <div class="flex">
-   
-          <a href="AdminIndex.jsp" class="logo">Admin<span>Panel</span></a>
-   
-         <nav class="navbar">
-            <a href="AdminIndex.jsp"><span>Home</span></a>
-            <a href="ListHouseServlet">Room</a>
-            <a href="ListBillServlet">Orders</a>
-            <a href="ListAccountServlet">Users</a>
-            <a href="ListCommentServlet">Messages</a>
-         </nav>
-   
-         <div class="icons">
-            <div id="menu-btn" class="fas fa-bars"></div>
-            <div id="user-btn" class="fas fa-user"></div>
-         </div>
-   
-         <div class="account-box">
-                <p>username : <span>${fullname}</span></p>
-                <a href="LogoutServlet" class="delete-btn">logout</a>
-
-            </div>
-   
-      </div>
-   </header>
+        <header>
+            <c:import url="Header_LoginedAdmin.jsp"></c:import>
+        </header>
     <section class="add-products">
       <h1 class="title">Update</h1>
 

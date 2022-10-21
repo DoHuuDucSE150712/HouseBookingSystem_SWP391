@@ -6,19 +6,20 @@
 package Controller;
 
 import Dao.HouseDAO;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
  * @author Admin
  */
 public class DeleteHouseServlet extends HttpServlet {
-
+    private static final String ERROR = "error.jsp";
+    private static final String SUCCESS = "ListHouseServlet";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -33,10 +34,15 @@ public class DeleteHouseServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            int cid = Integer.parseInt(request.getParameter("cid"));
+            try {
+                int id = Integer.parseInt(request.getParameter("id"));
         HouseDAO dao = new HouseDAO();
-        dao.deleteHouse(cid);
+        dao.deleteHouse(id);
         response.sendRedirect("ListHouseServlet");
+            } catch (Exception e) {
+                log("ERROR at DeleteHouseServlet"+e.toString());
+            }
+            
         }
     }
 

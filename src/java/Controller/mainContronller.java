@@ -5,13 +5,13 @@
  */
 package Controller;
 
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -41,13 +41,10 @@ public class mainContronller extends HttpServlet {
             else if(action.equals("")){
                 url = "search";
             }
-            else if(action.equals("updateStatusAccount")){
-                url = "UpdateStatusAccountServlet";
-            }
             
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
-        }   
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
