@@ -68,11 +68,13 @@
    
       </div>
    </header>
+
+        </form>
+            <table>
         <form action="SearchBillServlet" class="search-bar-container"  method="post"  >
         <input style="height: 60px;font-size: 40px;" type="text" name="search" id="search-bar" placeholder="Search here..."">
         <button class="fas fa-search" style="height: 60px; font-size: 40px; background-color: #fff" value="search" type="submit"></button>
         </form>
-            <table>
                 <thead>
                     <tr>
                     <th>Bill_ID</th>

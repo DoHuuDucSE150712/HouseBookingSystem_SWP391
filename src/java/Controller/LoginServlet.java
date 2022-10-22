@@ -40,7 +40,8 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         boolean rememberMe = request.getParameter("rememberme") != null;
-
+        
+        
         // lay file trong web.xml
         AccountDAO dao = new AccountDAO();
         Account a = null;

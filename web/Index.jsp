@@ -5,6 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="Model.Account"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,6 +23,7 @@
     <link rel="stylesheet" href="room/room.html">
     </head>
     <body>
+
         <!-- header section starts  -->
 
     <header>
@@ -83,53 +87,48 @@
 
     <section class="book" id="book">
 
-            <h1 class="heading">
-                <span>b</span>
-                <span>o</span>
-                <span>o</span>
-                <span>k</span>
-                <span class="space"></span>
-                <span>n</span>
-                <span>o</span>
-                <span>w</span>
-            </h1>
+        <h1 class="heading">
+            <span>b</span>
+            <span>o</span>
+            <span>o</span>
+            <span>k</span>
+            <span class="space"></span>
+            <span>n</span>
+            <span>o</span>
+            <span>w</span>
+        </h1>
 
-            <div class="row">
+        <div class="row">
 
-                <div class="image">
-                    <img src="Images/vn.jpg" alt=""/>
-                </div>
-                <form action="GetLocationServlet">
-                    <div class="inputBox">
-                        <h3>where to</h3>
-                        <select class="required">
-                            <option>Choose your city</option>
-                            <c:forEach items="${requestScope.LISTLOCATION}" var="l">
-                                <option value="${l.id}">${l.name}</option>
-                             <p id="location"></p>
-                            </c:forEach>
-                        </select>
-                    </div>
-                    <div class="inputBox">
-                        <h3>how many</h3>
-                        <input type="number" placeholder="number of guests">
-                    </div>
-                    <div class="inputBox">
-                        <h3>arrivals</h3>
-                        <input type="date">
-                    </div>
-                    <div class="inputBox">
-                        <h3>leaving</h3>
-                        <input type="date">
-                    </div>
-                    <!-- <input type="submit" class="btn" value="book now" href="#packages" >  -->
-                    <a href="UserListHouseServlet" class="btn">book now</a>
-
-                </form>
-
+            <div class="image">
+                <img src="Images/vn.jpg" alt=""/>
             </div>
 
-        </section>
+            <form action="">
+                <div class="inputBox">
+                    <h3>where to</h3>
+                    <input type="text" placeholder="place name">
+                </div>
+                <div class="inputBox">
+                    <h3>how many</h3>
+                    <input type="number" placeholder="number of guests">
+                </div>
+                <div class="inputBox">
+                    <h3>arrivals</h3>
+                    <input type="date">
+                </div>
+                <div class="inputBox">
+                    <h3>leaving</h3>
+                    <input type="date">
+                </div>
+                <!-- <input type="submit" class="btn" value="book now" href="#packages" >  -->
+                <a href="#packages" class="btn">book now</a>
+
+            </form>
+
+        </div>
+
+    </section>
 
     <!-- book section ends -->
     <!-- packages section starts  -->
@@ -508,7 +507,18 @@
             </div>
             <form name="submit-to-google-sheet">
                 <div class="inputBox">
+                    <%
+                        String username = (String)session.getAttribute("username");
+                        if(username == null){
+                    %>
                     <input type="text" name="Name" placeholder="name">
+                    <%
+                    }else{
+                %>
+                <input type="text" name="Name" placeholder="name" value="<%=username%>">
+                <%
+                    }
+                %>
                 <%
                 String email = (String)session.getAttribute("email");
                 if(email == null){
@@ -623,5 +633,6 @@
 
     <!-- custom js file link  -->
     <script src="JavaScript.js"></script>
+
     </body>
 </html>

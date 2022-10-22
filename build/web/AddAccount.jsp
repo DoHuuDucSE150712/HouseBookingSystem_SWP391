@@ -25,6 +25,8 @@
     </head>
     <body>
         
+    <section class="add-products">
+      <h1 class="title">Add Account</h1>
 <header class="header">
 
       <div class="flex">
@@ -52,8 +54,6 @@
    
       </div>
    </header>
-                <section class="add-products">
-      <h1 class="title">Add Account</h1>
       <form action="AddAccountServlet" method="post" >
 <!--        <h3>Update Account</h3>-->
         <input
