@@ -141,7 +141,7 @@
                                 <form action="UpdateStatusAccountServlet" method="post">
                                     <input type="text" name="username" value="<%=a.getUsername() %>" hidden="true">
                                     <input type="number" name="status" value="<%=a.getStatus() %>" hidden="true">
-                                    <input type="submit" value="Block/UnBlock" >
+                                    <input type="submit" value="Block/UnBlock" class="action_btn">
                                 </form>
                                 <%
                                     }
