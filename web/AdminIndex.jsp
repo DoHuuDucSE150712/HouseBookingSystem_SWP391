@@ -35,6 +35,7 @@
             <a href="ListHouseServlet">Room</a>
             <a href="ListBillServlet">Orders</a>
             <a href="ListAccountServlet">Users</a>
+            <a href="ListAddService">Service</a>
             <a href="ListCommentServlet">Messages</a>
          </nav>
    
@@ -107,6 +108,5 @@
 
         
     </body>
+    <script src="admin_script.js"></script>
 </html>
-<script src="admin_script.js"></script>
-<script src="admin_script.js"></script>

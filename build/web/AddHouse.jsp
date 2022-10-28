@@ -54,6 +54,7 @@
             <a href="ListHouseServlet">Room</a>
             <a href="ListBillServlet">Orders</a>
             <a href="ListAccountServlet">Users</a>
+            <a href="ListAddService">Service</a>
             <a href="ListCommentServlet">Messages</a>
          </nav>
    
@@ -75,13 +76,6 @@
       <h1 class="title">Add House</h1>
 
       <form action="AddHouseServlet" method="post" >
-        <input
-          type="text"
-          name="houseid"
-          class="box"
-          placeholder="Enter Account ID"
-          hidden="true"
-        />
         <h2>Post Date</h2>
         <input
           type="date"
@@ -155,6 +149,21 @@
                 }
                 %>
         </select>
+        <h2>IMG_Link</h2>
+        <input
+          type="text"
+          name="imglink"
+          class="box"
+          required=""
+        />
+        <h2>House ID</h2>
+        <input
+          type="text"
+          name="houseid"
+          value="<%=h.getHouseid()+1 %>"
+          class="box"
+          placeholder="Enter HouseId"
+        />
             
         
         
@@ -162,5 +171,5 @@
       </form>
     </section>
     </body>
+    <script src="admin_script.js"></script>
 </html>
-<script src="admin_script.js"></script>

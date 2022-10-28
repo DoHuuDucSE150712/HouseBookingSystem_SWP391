@@ -15,4 +15,5 @@
         <p>Your account has been locked</p>
         <p><a href="Index.jsp">Return to HomePage</a></p>
     </body>
+    <script src="admin_script.js"></script>
 </html>
