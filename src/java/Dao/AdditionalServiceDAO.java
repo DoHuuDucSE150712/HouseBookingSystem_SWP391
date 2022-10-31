@@ -31,10 +31,7 @@ public class AdditionalServiceDAO {
     }
     
     public List<AdditionalService> getAdditionalService() {
-        String sql = "SELECT TOP (1000) [add_service_id]\n" +
-                    "      ,[add_serviceName]\n" +
-                    "      ,[add_serviceDesc]\n" +
-                    "  FROM [HouseBooking].[dbo].[Additional_service]";
+        String sql = "select * from Additional_service";
         List<AdditionalService> list = new ArrayList<>();
         try {
             //tạo khay chứa câu lệnh
@@ -66,7 +63,6 @@ public class AdditionalServiceDAO {
             //set gia tri cho dau ? 
             pre.setString(1, as.getServicename());
             pre.setString(2, as.getServicedesc());
-            pre.setInt(3, as.getServiceid());
             pre.executeUpdate();
 
         } catch (Exception e) {
@@ -128,29 +124,5 @@ public class AdditionalServiceDAO {
         
         return as;
     }
-    public List<AdditionalService> getAdditionalServicebyName(String name){
-        String sql = "select * from Additional_service where add_serviceName like '%"+name+"%'";
-        List<AdditionalService> list = new ArrayList<>();
-        try {
-            //tạo khay chứa câu lệnh
-            PreparedStatement pre = con.prepareStatement(sql);
-            //chạy câu lệnh và tạo khay chứa kết quả câu lệnh
-            ResultSet resultSet = pre.executeQuery();
-            while(resultSet.next()){
-                int serviceid = resultSet.getInt(1);
-                String servicename = resultSet.getString(2);
-                String servicedesc = resultSet.getString(3);
-                AdditionalService as = new AdditionalService(serviceid, servicename, servicedesc);
-                list.add(as);
-            }
-        } catch (Exception e) {
-            System.out.println("error: "+e);
-        }
-        
-        return list;
-    }
     
-//        public static void main(String[] args) {
-//        AdditionalServiceDAO a = new AdditionalServiceDAO();
-//    }
 }
