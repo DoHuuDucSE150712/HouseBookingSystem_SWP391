@@ -36,23 +36,14 @@
             <a href="#home">home</a>
             <a href="#book">book</a>
             <a href="#packages">room</a>
-            <a href="#services">services</a>
-            <a href="#gallery">gallery</a>
-            <a href="#review">review</a>
             <a href="#contact">contact</a>
         </nav>
-        ${username}
         <div class="icons">
-            <i class="fas fa-search" id="search-btn"></i>
             <a href="login.jsp">
                 <i class="fas fa-user" id=""></i>
             </a>
         </div>
 
-        <form action="" class="search-bar-container">
-            <input type="search" id="search-bar" placeholder="search here...">
-            <label for="search-bar" class="fas fa-search"></label>
-        </form>
 
     </header>
 
@@ -104,10 +95,10 @@
                 <img src="Images/vn.jpg" alt=""/>
             </div>
 
-            <form action="">
+            <form action="search-house-main" method="get" >
                 <div class="inputBox">
                     <h3>where to</h3>
-                    <input type="text" placeholder="place name">
+                    <input type="text" name="whereTo" placeholder="place name">
                 </div>
                 <div class="inputBox">
                     <h3>how many</h3>
@@ -115,14 +106,14 @@
                 </div>
                 <div class="inputBox">
                     <h3>arrivals</h3>
-                    <input type="date">
+                    <input name="arrivals" type="date">
                 </div>
                 <div class="inputBox">
                     <h3>leaving</h3>
                     <input type="date">
                 </div>
                 <!-- <input type="submit" class="btn" value="book now" href="#packages" >  -->
-                <a href="#packages" class="btn">book now</a>
+                <input type="submit" value="Book now"  class="btn">
 
             </form>
 
@@ -253,55 +244,6 @@
     <!-- packages section ends -->
     <!-- services section starts  -->
 
-    <section class="services" id="services">
-
-        <h1 class="heading">
-            <span>s</span>
-            <span>e</span>
-            <span>r</span>
-            <span>v</span>
-            <span>i</span>
-            <span>c</span>
-            <span>e</span>
-            <span>s</span>
-        </h1>
-
-        <div class="box-container">
-
-            <div class="box">
-                <i class="fas fa-hotel"></i>
-                <h3>affordable hotels</h3>
-                <p>...</p>
-            </div>
-            <div class="box">
-                <i class="fas fa-utensils"></i>
-                <h3>food and drinks</h3>
-                <p>...</p>
-            </div>
-            <div class="box">
-                <i class="fas fa-bath"></i>
-                <h3>Bath</h3>
-                <p>...</p>
-            </div>
-            <div class="box">
-                <i class="fas fa-globe-asia"></i>
-                <h3>around the world</h3>
-                <p>...</p>
-            </div>
-            <div class="box">
-                <i class="fas fa-plane"></i>
-                <h3>fastest travel</h3>
-                <p>...</p>
-            </div>
-            <div class="box">
-                <i class="fas fa-hiking"></i>
-                <h3>adventures</h3>
-                <p>...</p>
-            </div>
-
-        </div>
-
-    </section>
 
     <!-- services section ends -->
     <!-- gallery section starts  -->
@@ -400,91 +342,6 @@
     <!-- gallery section ends -->
     <!-- review section starts  -->
 
-    <section class="review" id="review">
-
-        <h1 class="heading">
-            <span>r</span>
-            <span>e</span>
-            <span>v</span>
-            <span>i</span>
-            <span>e</span>
-            <span>w</span>
-        </h1>
-
-        <div class="swiper-container review-slider">
-
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="box">
-                        <img src="Images/pic4.png" alt=""/>
-                        <h3>Nam</h3>
-                        <p>...</p>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="box">
-                        <img src="Images/pic4.png" alt=""/>
-                        <h3>Kiet</h3>
-                        <p>...</p>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="box">
-                        <img src="Images/trung.jpg" alt=""/>
-                        <h3>Pham Hoang Trung</h3>
-                        <p>...</p>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="box">
-                        <img src="Images/Duc.jpg" alt=""/>
-                        <h3>Do Huu Duc</h3>
-                        <p>...</p>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="box">
-                        <img src="Images/pic4.png" alt=""/>
-                        <h3>Hy</h3>
-                        <p>...</p>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-    </section>
 
     <!-- review section ends -->
     <!-- contact section starts  -->

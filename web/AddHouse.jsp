@@ -54,7 +54,7 @@
             <a href="ListHouseServlet">Room</a>
             <a href="ListBillServlet">Orders</a>
             <a href="ListAccountServlet">Users</a>
-            <a href="ListAddService">Service</a>
+            <a href="ListAdditionalServiceServlet">Service</a>
             <a href="ListCommentServlet">Messages</a>
          </nav>
    
