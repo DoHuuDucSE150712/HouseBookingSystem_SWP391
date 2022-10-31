@@ -9,7 +9,6 @@ import Model.BillDetail;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -127,7 +126,7 @@ public class BillDetailDAO {
         }
     }
     
-    public int addBillDetail(BillDetail billdetail){
+    public void addBillDetail(BillDetail billdetail){
         String sql = "INSERT INTO [dbo].[Bill_detail]\n" +
                     "           ([bill_id]\n" +
                     "           ,[house_id]\n" +
@@ -140,10 +139,9 @@ public class BillDetailDAO {
                     "           ,?\n" +
                     "           ,?\n" +
                     "           ,?)";
-        int id = -1;
         try {
             //tạo khay chứa câu lệnh
-            PreparedStatement pre = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement pre = con.prepareStatement(sql);
             //set gia tri cho dau ? 
             pre.setInt(1, billdetail.getBillid());
             pre.setInt(2, billdetail.getHouseid());
@@ -154,20 +152,10 @@ public class BillDetailDAO {
             pre.setString(5, billdetail.getNote());
             //chạy câu lệnh và tạo khay chứa kết quả câu lệnh
             pre.executeUpdate();
-            
-              //get id
-            ResultSet generatedKeys = pre.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                id = generatedKeys.getInt(1);
-            } else {
-                throw new Exception("Creating bill failed, no ID obtained.");
-            }
 
         } catch (Exception e) {
             System.out.println("error :  " + e);
         }
-        
-        return id;
     }
     
 //        public static void main(String[] args) {
