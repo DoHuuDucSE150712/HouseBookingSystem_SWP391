@@ -141,32 +141,16 @@
         <servlet-class>Controller.DeleteHouseAdditionalServiceServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ListAddService</servlet-name>
-        <servlet-class>Controller.ListAddService</servlet-class>
+        <servlet-name>ListAdditionalServiceServlet</servlet-name>
+        <servlet-class>Controller.ListAdditionalServiceServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>NextEditAdditionalServiceServlet</servlet-name>
-        <servlet-class>Controller.NextEditAdditionalServiceServlet</servlet-class>
+        <servlet-name>SearchHouseMain</servlet-name>
+        <servlet-class>Controller.SearchHouseMain</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>EditAdditionalServiceServlet</servlet-name>
-        <servlet-class>Controller.EditAdditionalServiceServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DeleteAdditionalServiceServlet</servlet-name>
-        <servlet-class>Controller.DeleteAdditionalServiceServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>AddAdditionalServiceServlet</servlet-name>
-        <servlet-class>Controller.AddAdditionalServiceServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SearchAddServiceServlet</servlet-name>
-        <servlet-class>Controller.SearchAddServiceServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SearchBillServlet</servlet-name>
-        <servlet-class>Controller.SearchBillServlet</servlet-class>
+        <servlet-name>HousePageServlet</servlet-name>
+        <servlet-class>Controller.HousePageServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ListAccountServlet</servlet-name>
@@ -317,32 +301,16 @@
         <url-pattern>/DeleteHouseAdditionalServiceServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ListAddService</servlet-name>
-        <url-pattern>/ListAddService</url-pattern>
+        <servlet-name>ListAdditionalServiceServlet</servlet-name>
+        <url-pattern>/ListAdditionalServiceServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>NextEditAdditionalServiceServlet</servlet-name>
-        <url-pattern>/NextEditAdditionalServiceServlet</url-pattern>
+        <servlet-name>SearchHouseMain</servlet-name>
+        <url-pattern>/search-house-main</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>EditAdditionalServiceServlet</servlet-name>
-        <url-pattern>/EditAdditionalServiceServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DeleteAdditionalServiceServlet</servlet-name>
-        <url-pattern>/DeleteAdditionalServiceServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AddAdditionalServiceServlet</servlet-name>
-        <url-pattern>/AddAdditionalServiceServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SearchAddServiceServlet</servlet-name>
-        <url-pattern>/SearchAddServiceServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SearchBillServlet</servlet-name>
-        <url-pattern>/SearchBillServlet</url-pattern>
+        <servlet-name>HousePageServlet</servlet-name>
+        <url-pattern>/housepage</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
