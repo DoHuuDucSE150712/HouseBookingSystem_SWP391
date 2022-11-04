@@ -4,6 +4,7 @@
     Author     : Admin
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -39,9 +40,22 @@
             <a href="#contact">contact</a>
         </nav>
         <div class="icons">
-            <a href="login.jsp">
-                <i class="fas fa-user" id=""></i>
-            </a>
+            <i class="fas fa-search" id="search-btn"></i>
+                <c:if  test="${sessionScope.acc == null}">
+                    <a href="login.jsp">
+                        <i class="fas fa-user" id="user-btn"></i>
+                    </a>
+                </c:if>
+                <c:if test="${sessionScope.acc != null}">
+                    <i>username : <span>${acc.fullname}</span></i>
+                    <a href="LogoutServlet">
+                        <i class="delete-btn">Logout</i>
+                    </a>
+                    <a  class="" href="user.jsp" >
+                        
+                        <i>Profile</i>
+                    </a>
+                </c:if>
         </div>
 
 
@@ -124,122 +138,7 @@
     <!-- book section ends -->
     <!-- packages section starts  -->
 
-    <section class="packages" id="packages">
-
-        <h1 class="heading">
-            <span>r</span>
-            <span>o</span>
-            <span>o</span>
-            <span>m</span> 
-         </h1>
-
-        <div class="box-container">
-
-            <div class="box">
-                <img src="Images/dn .jpg" alt=""/>
-                <div class="content">
-                    <h3> <i class="fas fa-map-marker-alt"></i> Muong Thanh Luxury  Hotel </h3>
-                    <p>ks</p>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </div> 
-                    <div class="price"> $90.00 <span>$120.00</span> </div>
-                     <a href="room_MT.html" class="btn">book now</a>
-                </div>
-            </div>
-
-            <div class="box">
-                <img src="Images/hl.png" alt=""/>
-                <div class="content">
-                    <h3> <i class="fas fa-map-marker-alt"></i> Halong Capella Cruise </h3>
-                    <p>ks</p>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </div> 
-                    <div class="price"> $90.00 <span>$120.00</span> </div>
-                     <a href="#" class="btn">book now</a>
-                </div>
-            </div>
-
-            <div class="box">
-                <img src="Images/sapa.png" alt=""/>
-                <div class="content">
-                    <h3> <i class="fas fa-map-marker-alt"></i> KK Sapa Hotel </h3>
-                    <p>ks</p>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </div> 
-                    <div class="price"> $90.00 <span>$120.00</span> </div>
-                    <a href="#" class="btn">book now</a>
-                </div>
-            </div>
-
-            <div class="box">
-                <img src="Images/dalat.png" alt=""/>
-                <div class="content">
-                    <h3> <i class="fas fa-map-marker-alt"></i> Du Parc Hotel Dalat </h3>
-                    <p>ks</p>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </div> 
-                    <div class="price"> $90.00 <span>$120.00</span> </div>
-                     <a href="#" class="btn">book now</a>
-                </div>
-            </div>
-
-            <div class="box">
-                <img src="Images/condao.png" alt=""/>
-                <div class="content">
-                    <h3> <i class="fas fa-map-marker-alt"></i> Six Senses Con Dao </h3>
-                    <p>ks</p>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </div> 
-                    <div class="price"> $90.00 <span>$120.00</span> </div>
-                     <a href="#" class="btn">book now</a>
-                </div>
-            </div>
-
-            <div class="box">
-                <img src="Images/nhatrang.png" alt=""/>
-                <div class="content">
-                    <h3> <i class="fas fa-map-marker-alt"></i> Comodo Nha Trang Hotel </h3>
-                    <p>ks</p>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </div> 
-                    <div class="price"> $90.00 <span>$120.00</span> </div>
-                     <a href="#" class="btn">book now</a>
-                </div>
-            </div>
-
-        </div>
-
-    </section>
+    
 
     <!-- packages section ends -->
     <!-- services section starts  -->

@@ -34,6 +34,36 @@ public class HouseDAO {
         }
     }
 
+     public List<House> getNameThreeHouseBest() {
+        String sql = "select top 3 House.house_id  ,House.house_name , COUNT (*)\n"
+                + "from Bill_detail , House\n"
+                + "where Bill_detail.house_id  = House.house_id\n"
+                + "group by House.house_id ,House.house_name\n"
+                + "";
+        List<House> list = new ArrayList<House>();
+        try {
+            //tạo khay chứa câu lệnh
+            PreparedStatement pre = con.prepareStatement(sql);
+            //chạy câu lệnh và tạo khay chứa kết quả câu lệnh
+            ResultSet resultSet = pre.executeQuery();
+            while (resultSet.next()) {
+                int houseid = resultSet.getInt(1);
+                String houseName = resultSet.getString(2);
+                int numberBill = resultSet.getInt(3);
+                House house = new House();
+                house.setHouseid(houseid);
+                house.setHousename(houseName);
+                house.setNumberBill(numberBill);
+                list.add(house);
+
+            }
+        } catch (Exception e) {
+            System.out.println("error: " + e);
+        }
+
+        return list;
+    }
+    
     public List<House> getHouse() {
         String sql = "select * from dbo.House";
         List<House> list = new ArrayList<>();

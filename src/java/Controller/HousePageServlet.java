@@ -4,16 +4,21 @@
  * and open the template in the editor.
  */
 package Controller;
-
+import Dao.AdditionalServiceDAO;
+import Model.AdditionalService;
 import Dao.AccountDAO;
 import Dao.BillDAO;
 import Dao.BillDetailDAO;
+import Dao.CommentDAO;
+import Dao.HouseAdditionalServiceDAO;
 import Dao.HouseDAO;
 import Dao.HouseImgDAO;
 import Model.Account;
 import Model.Bill;
 import Model.BillDetail;
+import Model.Comment;
 import Model.House;
+import Model.HouseAdditionalService;
 import Model.HouseImg;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -78,7 +83,12 @@ public class HousePageServlet extends HttpServlet {
         House house = hdao.getHousebyId(houseId);
         HouseImgDAO houImageDAO = new HouseImgDAO();
         List<HouseImg> listImage = houImageDAO.getHouseImgbyID(houseId);
-
+        CommentDAO cdao = new CommentDAO();
+            List<Comment> list = cdao.getComment();
+        AccountDAO dao = new AccountDAO();
+        Account a = dao.getAccounts();
+        request.setAttribute("Comment", list);
+        request.setAttribute("account", a);
         request.setAttribute("house", house);
         request.setAttribute("listImage", listImage);
         request.getRequestDispatcher("Housepage.jsp").forward(request, response);
@@ -96,21 +106,26 @@ public class HousePageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //check login
-        if (request.getSession().getAttribute("email") == null) {
+        if (request.getSession().getAttribute("username") == null) {
             request.setAttribute("mess", "Please Enter login");
             request.getRequestDispatcher("Housepage.jsp").forward(request, response);
             return;
         }
         //get userId
         AccountDAO adao = new AccountDAO();
-        Account user = adao.getAccountbyEmail(request.getSession().getAttribute("email").toString());
+        Account user = adao.getAccountbyUsername(request.getSession().getAttribute("username").toString());
 
         int houseId = Integer.parseInt(request.getParameter("houseid"));
         HouseDAO hdao = new HouseDAO();
         House house = hdao.getHousebyId(houseId);
         float total = house.getHouseprice();
         //TODO : total + list price service
-
+        HouseAdditionalServiceDAO asdao = new HouseAdditionalServiceDAO();
+        List<HouseAdditionalService> listService = asdao.getHouseAdditionalServicebyID(houseId);
+        for (HouseAdditionalService additionalService : listService) {
+            total += additionalService.getServiceprice();
+        }
+        
         //add bill
         Bill bill = new Bill(-1, new Date(), total, 1, user.getUserid());
         BillDAO bdao = new BillDAO();
@@ -137,8 +152,32 @@ public class HousePageServlet extends HttpServlet {
             request.getRequestDispatcher("Housepage.jsp").forward(request, response);
             return;
         }
-
+        
+        //check start, end date
         BillDetailDAO biBillDetailDAO = new BillDetailDAO();
+        BillDetail billDetailCheck = biBillDetailDAO.getBillDeatailbyhouId(houseId);
+        if (billDetailCheck != null) {
+            if (checkDateExit(billDetailCheck, startdate)) {
+                request.setAttribute("mess", "start date exist");
+                request.getRequestDispatcher("Housepage.jsp").forward(request, response);
+                return;
+            }
+            
+            if (checkDateExit(billDetailCheck, enddate)) {
+                request.setAttribute("mess", "end date exist");
+                request.getRequestDispatcher("Housepage.jsp").forward(request, response);
+                return;
+            }
+            if (startdate.before(billDetailCheck.getStartdate()) && enddate.after(billDetailCheck.getStartdate())) {
+                request.setAttribute("mess", "start date exist && end date exist");
+                request.getRequestDispatcher("Housepage.jsp").forward(request, response);
+                return;
+            }
+            
+
+        }
+        
+        
         BillDetail billDetail = new BillDetail(-1, idBill, houseId, startdate, enddate, note);
 
         int idBillDetail = biBillDetailDAO.addBillDetail(billDetail);
@@ -152,6 +191,15 @@ public class HousePageServlet extends HttpServlet {
 
         request.setAttribute("mess", "Add bill sucess");
         request.getRequestDispatcher("Housepage.jsp").forward(request, response);
+    }
+    
+     private boolean checkDateExit(BillDetail billDetail, Date date) {
+        boolean check = false;
+        if (date.after(billDetail.getStartdate()) && date.before(billDetail.getEnddate())) {
+            check = true;
+        }
+        return check;
+
     }
 
     private Date covertDate(String dateString) throws ParseException {

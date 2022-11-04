@@ -31,6 +31,7 @@ public class BillDAO {
             System.out.println("error: " + e);
         }
     }
+    
 
     public List<Bill> getBill() {
         String sql = "select * from Bill";
@@ -186,6 +187,78 @@ public class BillDAO {
         }
 
         return b;
+    }
+public List<Bill> getBillByDate(String dateString){
+        String sql = "select * from Bill where date = '"+dateString+"'";
+        List<Bill> list = new ArrayList<>();
+        try {
+            //tạo khay chứa câu lệnh
+            PreparedStatement pre = con.prepareStatement(sql);
+            //chạy câu lệnh và tạo khay chứa kết quả câu lệnh
+            ResultSet resultSet = pre.executeQuery();
+            while(resultSet.next()){
+                int billid = resultSet.getInt(1);
+                Date date = resultSet.getDate(2);
+                float total = resultSet.getFloat(3);
+                int status = resultSet.getInt(4);
+                int userid = resultSet.getInt(5);
+
+                //tạo model hứng giữ liệu
+                Bill b = new Bill(billid, date, total, status, userid);
+                list.add(b);
+            }
+        } catch (Exception e) {
+            System.out.println("error: "+e);
+        }
+        
+        return list;
+    }
+
+    public List<Bill> getBillbyUserId(int user_id){
+        String sql = "select * from Bill where user_id = ?";
+        List<Bill> list = new ArrayList<>();
+        try{
+            //tạo khay chứa câu lệnh
+            PreparedStatement pre = con.prepareStatement(sql);
+            pre.setInt(1, user_id);
+            //chạy câu lệnh và tạo khay chứa kết quả câu lệnh
+            ResultSet resultSet = pre.executeQuery();
+            while(resultSet.next()){
+                int billid = resultSet.getInt(1);
+                Date date = resultSet.getDate(2);
+                float total = resultSet.getFloat(3);
+                int status = resultSet.getInt(4);
+                int userid = resultSet.getInt(5);
+
+                //tạo model hứng giữ liệu
+                Bill b = new Bill(billid, date, total, status, userid);
+               
+               list.add(b);
+            }
+        } catch (Exception e) {
+            System.out.println("error: "+e);
+        }
+        
+        return list;
+    }
+
+    
+    
+    public void updatebillStatus(int billid){
+        String sql = "UPDATE [dbo].[Bill]\n" +
+                "   SET [status] = ?" +
+                " WHERE bill_id = ?";
+        try {
+            //tạo khay chứa câu lệnh
+            PreparedStatement pre = con.prepareStatement(sql);
+            pre.setInt(1, 0);
+            pre.setInt(2, billid);
+            //chạy câu lệnh và tạo khay chứa kết quả câu lệnh
+            pre.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("error :  " + e);
+        }
     }
 
 }

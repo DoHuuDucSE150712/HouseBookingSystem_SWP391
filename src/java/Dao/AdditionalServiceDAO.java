@@ -30,6 +30,7 @@ public class AdditionalServiceDAO {
         }
     }
     
+    
     public List<AdditionalService> getAdditionalService() {
         String sql = "select * from Additional_service";
         List<AdditionalService> list = new ArrayList<>();
@@ -124,5 +125,25 @@ public class AdditionalServiceDAO {
         
         return as;
     }
-    
+    public List<AdditionalService> getAdditionalServicebyName(String name){
+        String sql = "select * from Additional_service where add_serviceName like '%"+name+"%'";
+        List<AdditionalService> list = new ArrayList<>();
+        try {
+            //tạo khay chứa câu lệnh
+            PreparedStatement pre = con.prepareStatement(sql);
+            //chạy câu lệnh và tạo khay chứa kết quả câu lệnh
+            ResultSet resultSet = pre.executeQuery();
+            while(resultSet.next()){
+                int serviceid = resultSet.getInt(1);
+                String servicename = resultSet.getString(2);
+                String servicedesc = resultSet.getString(3);
+                AdditionalService as = new AdditionalService(serviceid, servicename, servicedesc);
+                list.add(as);
+            }
+        } catch (Exception e) {
+            System.out.println("error: "+e);
+        }
+        
+        return list;
+    }
 }
